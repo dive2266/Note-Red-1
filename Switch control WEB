@@ -1,0 +1,101 @@
+[
+    {
+        "id": "85e9a6a3.d62538",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "df6a3eac.def9b",
+        "type": "http in",
+        "z": "85e9a6a3.d62538",
+        "name": "",
+        "url": "/pin4",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "ba3df781.ead8a8"
+            ]
+        ]
+    },
+    {
+        "id": "ef5daacc.81d7c8",
+        "type": "rpi-gpio in",
+        "z": "85e9a6a3.d62538",
+        "name": "GPIO4",
+        "pin": "7",
+        "intype": "tri",
+        "debounce": "25",
+        "read": true,
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "9c544002.c3088"
+            ]
+        ]
+    },
+    {
+        "id": "9c544002.c3088",
+        "type": "function",
+        "z": "85e9a6a3.d62538",
+        "name": "set GPIO",
+        "func": "global.set(\"GPIO\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "5f0f4b78.e331e4"
+            ]
+        ]
+    },
+    {
+        "id": "ba3df781.ead8a8",
+        "type": "function",
+        "z": "85e9a6a3.d62538",
+        "name": "get GPIO",
+        "func": "msg.payload = global.get(\"GPIO\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 80,
+        "wires": [
+            [
+                "902dd8c8.96f328",
+                "5f0f4b78.e331e4"
+            ]
+        ]
+    },
+    {
+        "id": "902dd8c8.96f328",
+        "type": "http response",
+        "z": "85e9a6a3.d62538",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 510,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "5f0f4b78.e331e4",
+        "type": "debug",
+        "z": "85e9a6a3.d62538",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 530,
+        "y": 140,
+        "wires": []
+    }
+]
